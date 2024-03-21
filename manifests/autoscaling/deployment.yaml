@@ -24,7 +24,7 @@ spec:
           image: "ghcr.io/joeyomi/celonis-challenge:latest"
           imagePullPolicy: IfNotPresent
           env:
-            - name: CELONIS_API_KEY
+            - name: API_KEY
               valueFrom:
                 secretKeyRef:
                   name: celonis-api-key
@@ -32,8 +32,6 @@ spec:
           volumeMounts:
             - name: celonis-data
               mountPath: /root
-            - name: celonis-config
-              mountPath: /app
           ports:
             - name: http
               containerPort: 8080
@@ -51,7 +49,4 @@ spec:
         - name: celonis-data
           persistentVolumeClaim:
             claimName: celonis
-        - name: celonis-config
-          configMap:
-            name: celonis-config
       dnsPolicy: ClusterFirst
