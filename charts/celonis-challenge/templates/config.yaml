@@ -1,9 +1,0 @@
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: {{ include "celonis.fullname" . }}-config
-  namespace: {{ .Release.Namespace | quote }}
-  labels: {{- include "celonis.labels" . | nindent 4 }}
-data:
-  application.yaml: |
-    {{- toYaml .Values.celonis.config | nindent 4 }}

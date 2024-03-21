@@ -1,8 +1,8 @@
 annotations:
   licenses: MIT
 apiVersion: v2
-appVersion: 1.0.0
-version: 0.1.0
+appVersion: 1.0.1
+version: 0.1.1
 name: celonis-challenge
 description: Celonis Platform Engineering Challenge
 home: https://github.com/joeyomi/celonis-challenge

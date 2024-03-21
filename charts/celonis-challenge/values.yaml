@@ -352,10 +352,3 @@ celonis:
   existingApiKeySecret: ""
   # -- Name of the existing secret's key containing the celonis API credentials
   existingApiKeySecretKey: "celonis-api-key"
-
-  # -- Celonis `config.yaml`
-  # @default -- `[]` (See [values.yaml])
-  config:
-    app:
-      api:
-        key: dev
