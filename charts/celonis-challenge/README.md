@@ -1,6 +1,6 @@
 # Celonis Platform Engineering Challenge
 
-![Version: 0.1.0](https://img.shields.io/badge/Version-0.1.0-informational?style=flat-square) ![AppVersion: 1.0.0](https://img.shields.io/badge/AppVersion-1.0.0-informational?style=flat-square)
+![Version: 0.1.1](https://img.shields.io/badge/Version-0.1.1-informational?style=flat-square) ![AppVersion: 1.0.1](https://img.shields.io/badge/AppVersion-1.0.1-informational?style=flat-square)
 
 ## TL;DR
 
@@ -116,7 +116,6 @@ The chart also facilitates the creation of TLS secrets for use with the Ingress 
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | celonis.apiKey | string | `"dev"` | Celonis API Key |
-| celonis.config | object | `[]` (See [values.yaml]) | Celonis `config.yaml` |
 | celonis.existingApiKeySecret | string | `""` | Name of an existing secret resource containing the celonis API credentials |
 | celonis.existingApiKeySecretKey | string | `"celonis-api-key"` | Name of the existing secret's key containing the celonis API credentials |
 
