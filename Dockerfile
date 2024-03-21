@@ -6,6 +6,7 @@
 FROM gradle:7.6.3-jdk-jammy AS build
 COPY --chown=gradle:gradle . /home/gradle/src
 WORKDIR /home/gradle/src
+ARG API_KEY="dev"
 RUN gradle build --no-daemon 
 
 
