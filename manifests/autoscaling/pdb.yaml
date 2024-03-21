@@ -1,0 +1,14 @@
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: celonis
+  namespace: "celonis"
+  labels:
+    app.kubernetes.io/name: celonis
+    app.kubernetes.io/instance: celonis
+spec:
+  minAvailable: 0
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: celonis
+      app.kubernetes.io/instance: celonis

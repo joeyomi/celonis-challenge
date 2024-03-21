@@ -1,0 +1,14 @@
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: celonis
+  namespace: "celonis"
+  labels:
+    app.kubernetes.io/name: celonis
+    app.kubernetes.io/instance: celonis
+spec:
+  accessModes:
+    - "ReadWriteOnce"
+  resources:
+    requests:
+      storage: "4Gi"

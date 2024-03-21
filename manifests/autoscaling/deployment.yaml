@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: celonis
+  namespace: "celonis"
+  labels:
+    app.kubernetes.io/name: celonis
+    app.kubernetes.io/instance: celonis
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: celonis
+      app.kubernetes.io/instance: celonis
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: celonis
+        app.kubernetes.io/instance: celonis
+    spec:
+      terminationGracePeriodSeconds: 30
+      serviceAccountName: celonis
+      containers:
+        - name: celonis-challenge
+          image: "ghcr.io/joeyomi/celonis-challenge:latest"
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: CELONIS_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: celonis-api-key
+                  key: "celonis-api-key"
+          volumeMounts:
+            - name: celonis-data
+              mountPath: /root
+            - name: celonis-config
+              mountPath: /app
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          resources:
+            limits:
+              cpu: 500m
+              memory: 1024Mi
+            requests:
+              cpu: 250m
+              memory: 512Mi
+          #livenessProbe: {}
+          #readinessProbe: {}
+      volumes:
+        - name: celonis-data
+          persistentVolumeClaim:
+            claimName: celonis
+        - name: celonis-config
+          configMap:
+            name: celonis-config
+      dnsPolicy: ClusterFirst
