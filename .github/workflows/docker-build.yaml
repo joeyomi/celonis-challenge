@@ -3,9 +3,13 @@ name: Docker Release
 on:
   workflow_dispatch:
   pull_request:
+    paths-ignore:
+      - "charts/**"
   push:
     branches:
       - "main"
+    paths-ignore:
+      - "charts/**"
 
 permissions:
   contents: read

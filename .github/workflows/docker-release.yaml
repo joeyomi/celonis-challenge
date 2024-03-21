@@ -1,9 +1,12 @@
 name: Create Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
+      - "main"
+    paths-ignore:
+      - "charts/**"
 
 permissions:
   contents: write
