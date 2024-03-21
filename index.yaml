@@ -5,6 +5,29 @@ entries:
       licenses: MIT
     apiVersion: v2
     appVersion: 1.0.1
+    created: "2024-03-21T22:46:40.915064581Z"
+    description: Celonis Platform Engineering Challenge
+    digest: 4801fe1f2d83f8d22b18002d3202b0129ec16b5fff4e0a69f83819ffbe18242c
+    home: https://github.com/joeyomi/celonis-challenge
+    icon: https://en.m.wikipedia.org/wiki/File:Celonis_Logo.png
+    keywords:
+    - celonis
+    - challenge
+    - platform-engineering-challenge
+    maintainers:
+    - email: joseph.oyomi11@gmail.com
+      name: joeyomi
+      url: https://github.com/joeyomi/
+    name: celonis-challenge
+    sources:
+    - https://github.com/joeyomi/celonis-challenge
+    urls:
+    - https://github.com/joeyomi/celonis-challenge/releases/download/0.1.2-helm/celonis-challenge-0.1.2.tgz
+    version: 0.1.2
+  - annotations:
+      licenses: MIT
+    apiVersion: v2
+    appVersion: 1.0.1
     created: "2024-03-21T22:37:12.883913014Z"
     description: Celonis Platform Engineering Challenge
     digest: b199566f227f02c6a6e0e4fc27a9475cac20d1005b3952a1319cf692f3834e43
@@ -47,4 +70,4 @@ entries:
     urls:
     - https://github.com/joeyomi/celonis-challenge/releases/download/0.1.0-helm/celonis-challenge-0.1.0.tgz
     version: 0.1.0
-generated: "2024-03-21T22:37:12.883924946Z"
+generated: "2024-03-21T22:46:40.91508003Z"
