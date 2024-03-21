@@ -1,0 +1,26 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: celonis
+  namespace: "celonis"
+  labels:
+    app.kubernetes.io/name: celonis
+    app.kubernetes.io/instance: celonis
+  annotations:
+    traefik.ingress.kubernetes.io/router.entrypoints: "web"
+spec:
+  rules:
+    - host: whoami.127.0.0.1.sslip.io
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: celonis
+                port:
+                  number: 80
+#  tls:
+#    - hosts:
+#        - whoami.127.0.0.1.sslip.io
+#      secretName: celonis-tls

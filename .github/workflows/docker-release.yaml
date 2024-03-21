@@ -8,6 +8,7 @@ on:
     paths-ignore:
       - "charts/**"
       - ".github/**"
+      - "manifests"
 
 permissions:
   contents: write

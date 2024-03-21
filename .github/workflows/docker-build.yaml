@@ -6,12 +6,14 @@ on:
     paths-ignore:
       - "charts/**"
       - ".github/**"
+      - "manifests"
   push:
     branches:
       - "main"
     paths-ignore:
       - "charts/**"
       - ".github/**"
+      - "manifests"
 
 permissions:
   contents: read
