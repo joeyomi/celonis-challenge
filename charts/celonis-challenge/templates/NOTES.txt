@@ -1,0 +1,48 @@
+CHART NAME: {{ .Chart.Name  }}
+CHART VERSION: {{ .Chart.Version  }}
+APP VERSION: {{ .Chart.AppVersion  }}
+
+** Please be patient while the chart is being deployed **
+
+Your File Server can be accessed through the following DNS name from within your cluster:
+
+    {{ include "celonis.fullname" . }}.{{ .Release.Namespace }}.svc.cluster.local (port {{ .Values.service.servicePortHttp }})
+
+To access your File Server from outside the cluster follow the steps below:
+
+{{- if .Values.ingress.enabled }}
+
+1. Get File Server URL and associated Hostname to your cluster external IP:
+
+   export CLUSTER_IP=$(minikube ip) # On Minikube. Use: `kubectl cluster-info` on others K8s clusters
+   echo "File Server URL: http{{ if .Values.ingress.tls.enabled }}s{{ end }}://{{ .Values.ingress.hostname }}/"
+   echo "$CLUSTER_IP  {{ .Values.ingress.hostname }}" | sudo tee -a /etc/hosts
+
+{{- else }}
+{{- $port := .Values.service.servicePortHttp | toString }}
+
+1. Get File Server URL by running these commands:
+
+{{- if contains "NodePort" .Values.service.type }}
+
+   export NODE_PORT=$(kubectl get --namespace {{ .Release.Namespace }} -o jsonpath="{.spec.ports[0].nodePort}" services {{ include "celonis.fullname" . }})
+   export NODE_IP=$(kubectl get nodes --namespace {{ .Release.Namespace }} -o jsonpath="{.items[0].status.addresses[0].address}")
+   echo "File Server URL: http://$NODE_IP:$NODE_PORT/"
+
+{{- else if contains "LoadBalancer" .Values.service.type }}
+
+  NOTE: It may take a few minutes for the LoadBalancer IP to be available.
+        Watch the status with: 'kubectl get svc --namespace {{ .Release.Namespace }} -w {{ include "celonis.fullname" . }}'
+
+   export SERVICE_IP=$(kubectl get svc --namespace {{ .Release.Namespace }} {{ include "celonis.fullname" . }} --template "{{ "{{ range (index .status.loadBalancer.ingress 0) }}{{ . }}{{ end }}" }}")
+   echo "File Server URL: http://$SERVICE_IP{{- if ne $port "80" }}:{{ .Values.service.servicePortHttp }}{{ end }}/"
+
+{{- else if contains "ClusterIP"  .Values.service.type }}
+
+   kubectl port-forward --namespace {{ .Release.Namespace }} svc/{{ include "celonis.fullname" . }} {{ .Values.service.servicePortHttp }}:{{ .Values.service.servicePortHttp }} &
+   echo "File Server URL: http://127.0.0.1{{- if ne $port "80" }}:{{ .Values.service.servicePortHttp }}{{ end }}//"
+
+{{- end }}
+{{- end }}
+
+2. Open a browser and access File Server using the obtained URL.

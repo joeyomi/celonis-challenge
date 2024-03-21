@@ -3,9 +3,15 @@ name: Docker Release
 on:
   workflow_dispatch:
   pull_request:
+    paths-ignore:
+      - "charts/**"
+      - ".github/**"
   push:
     branches:
       - "main"
+    paths-ignore:
+      - "charts/**"
+      - ".github/**"
 
 permissions:
   contents: read

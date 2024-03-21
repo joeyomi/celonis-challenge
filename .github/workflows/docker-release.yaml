@@ -1,9 +1,13 @@
 name: Create Release
 
 on:
+  workflow_dispatch:
   push:
     branches:
-      - main
+      - "main"
+    paths-ignore:
+      - "charts/**"
+      - ".github/**"
 
 permissions:
   contents: write
