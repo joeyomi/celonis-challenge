@@ -54,6 +54,8 @@ kubectl apply -f k8s/fixed
 - Add logging, metrics, and alerts.
 - Switch to Object storage.
 
+
+
 ## Module 2: Pipeline design
 
 | **Challenge**                    | **Description**                                                                                         | **Solution**                                                                                                                                                                                                                                                                   |
